@@ -1,0 +1,34 @@
+name: Deploy Docusaurus
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+
+      - name: Install dependencies
+        run: |
+          cd docusaurus  # Navigate to the Docusaurus folder
+          npm install
+
+      - name: Build site
+        run: |
+          cd docusaurus
+          npm run build
+
+      - name: Deploy to GitHub Pages
+        run: |
+          cd docusaurus
+          npm run deploy
