@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkkevshin2002=self.webpackChunkkevshin2002||[]).push([[2180],{9504:e=>{e.exports=JSON.parse('{"permalink":"/fall-2024-final-project-team-2/blog/tags/hello","page":1,"postsPerPage":5,"totalPages":1,"totalCount":1,"blogDescription":"Blog","blogTitle":"Blog"}')}}]);
