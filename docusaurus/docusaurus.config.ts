@@ -6,19 +6,17 @@ import type * as Preset from "@docusaurus/preset-classic";
 require('dotenv').config()
 
 const config: Config = {
-  title: "Kevin Shin, Electrical Engineer",
-  tagline:
-    "Researcher interested in personal growth and tech trends. Tracking authentic behavior, mapping minds, bridging Lab findings to real-world impact.",
-  url: "https://kevshin2002.github.io",
-  baseUrl: "/",
+  title: 'Final Project Team 2', 
+  tagline: 'Documentation for Team 2 Final Project',
+  url: 'https://ucsd-ecemae-148.github.io',
+  baseUrl: '/fall-2024-final-project-team-2/',
   staticDirectories: ['static', 'public'],
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
   favicon: "img/favicon.ico",
 
-  // GitHub pages deployment config 
-  organizationName: "kevshin2002",
-  projectName: "website",
+  organizationName: 'UCSD-ECEMAE-148',
+  projectName: 'fall-2024-final-project-team-2',
   trailingSlash: false,
 
   i18n: {
@@ -186,12 +184,6 @@ const config: Config = {
         },
       ],
       copyright: `Copyright © ${new Date().getFullYear()} Kevin Shin. All rights reserved.`,
-    },
-    algolia: {
-      appId: process.env.ALGOLIA_APP_ID,
-      apiKey: process.env.ALGOLIA_API_KEY,
-      indexName: process.env.ALGOLIA_INDEX_KEY,
-      contextualSearch: true,
     },
     themes: [
       require.resolve('@docusaurus/theme-live-codeblock'),
