@@ -6,53 +6,52 @@ import { Project, ProjectData } from "../components/projects/Project";
 const assetsDir = "./assets/projects";
 const projects: ProjectData[] = [
   {
-    title: "Jetson Nano RC Car",
-    description: "TBA",
+    title: "Human Pose Estimation",
+    description: "Human Pose Estimation with OAKD-lite and DepthAI.",
     url: "https://github.com/liuyuweitarek/Kebbi-Remote-Control-System",
     image: require(`${assetsDir}/Robot-Remote-Control-System.png`),
-    role: "Author",
   },
   {
-    title: "Software Tools",
-    description: "Collection of software tools in C++ for scalability and reuseability, focusing on templatization and best pragma",
+    title: "ReMEmbR",
+    description: "Re-implementation of Retrieval-augmented Memory for Embodied Robots using Jetson Nano",
     url: "https://github.com/kevshin2002/Coding-Journey/tree/main/Tools",
-    image: require(`${assetsDir}/factory.png`),
-    role: "Author",
+    image: require(`${assetsDir}/remember.png`),
   },
   {
-    title: "Relational Database",
-    description: "Replication of relational databse in C++ with core MySQL functionality, leveraging design patterns like MVC and CoR for extensibility and optimizing data storage and retrieval through caching and indexing.",
+    title: "Roboflow",
+    description: "Roboflow computer  vision, more description later, incomplete",
     url: "https://github.com/kevshin2002/Software-Development/tree/main/Relational%20Database",
-    image: require(`${assetsDir}/database.png`),
-    role: "Developer",
+    image: "https://media.tenor.com/DM7SdBiQKhEAAAAM/cat-underwater.gif",
   },
   {
-    title: "Traffic Sign Classification",
-    description: "CNN-based deep learning model using ResNeXt-32 in PyTorch for traffic sign classification, trained on the TinyLISA and LISA dataset",
+    title: "Autonomous Lane Tracking",
+    description: "Autonomous driving via lane tracking using ROS2, OpenCV2, and PID Tuning",
+    url: "https://github.com/kevshin2002/Software-Development/tree/main/Relational%20Database",
+    image: "https://i.gyazo.com/4dd8359c56e1894caa49be319a9fa37a.gif",
+  },
+  {
+    title: "Autonomous via GPS",
+    description: "Autonomous driving via PointOneNav and PID tuning to navigate autonomously a recorded path",
     url: "https://github.com/kevshin2002/ML-AI/tree/main",
-    image: require(`${assetsDir}/traffic_sign.png`),
-    role: "Co-Developer",
+    image: "https://i.gyazo.com/ce6b0ffe765551108b0e7f624c65a144.gif"
   },
   {
-    title: "Classifiers with MNIST",
-    description: "Implementation of linear classifiers using Euclidean and Mahalanobis distance, incorporating Maximum Likelihood Estimation and Principal Component Analysis, with an introduction to unsupervised learning through clustering techniques",
+    title: "Deep Learning Autonomy",
+    description: "Deep Learning Model utilizing Donkeycar framework to autonomously drive around a given track after being trained on collected data",
     url: "https://github.com/kevshin2002/ML-AI/tree/main/Classifiers%20with%20MNIST",
-    image: require(`${assetsDir}/mnist.jpg`),
-    role: "Developer",
+    image: "https://i.gyazo.com/91f2f352d4704252230281c60c67eeb3.gif"
   },
   {
-    title: "Variational Autoencoder",
-    description: "CNN model in PyTorch for generating chest X-ray images, utilizing convolutional layers, reparameterization, and performance evaluation with FID and Inception Score.",
+    title: "Remote Deep Learning Simulator",
+    description: "All the same, but this time, on Twitch.",
     url: "https://github.com/kevshin2002/ML-AI/blob/main/Variational%20Autoencoder/VAE.ipynb",
-    image: require(`${assetsDir}/chest.png`),
-    role: "Developer",
+    image: "https://i.gyazo.com/63fbb655fcb58cbbfcc851a8407cebce.gif",
   },
   {
-    title: "TritonHacks Web Development Kit",
-    description: "Beginner-friendly starter kit for high school students to learn and build web applications using HTML, CSS, JavaScript, and FastAPI during a hackathon at UCSD",
-    url: "https://tritonhacks.github.io/thwebdev-24/",
-    image: require(`${assetsDir}/tritonhacks.png`),
-    role: "Team Lead",
+    title: "Deep Learning Simulator",
+    description: "Deep Learning Model utilizing Donkeycar framework to autonomously drive around a given track in a simulator",
+    url: "https://github.com/kevshin2002/ML-AI/blob/main/Variational%20Autoencoder/VAE.ipynb",
+    image: "https://i.gyazo.com/5bdd62438fe8c628cfbc38516377c1b6.gif",
   }
 ];
 

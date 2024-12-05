@@ -78,15 +78,6 @@ const config: Config = {
           lastVersion: 'current',
           onlyIncludeVersions: ['current'],
         },
-        blog: {
-          postsPerPage: 5,
-          showReadingTime: true,
-          editUrl: "https://github.com/UCSD-ECEMAE-148/fall-2024-final-project-team-2/tree/main/",
-          feedOptions: {
-            type: "all",
-            copyright: `Copyright © ${new Date().getFullYear()} Kevin Shin. All rights reserved.`,
-          },
-        },
         theme: {
           customCss: [
             require.resolve("./src/css/custom.scss"), 
@@ -128,17 +119,15 @@ const config: Config = {
     },
     navbar: {
       hideOnScroll: false,
-      title: "Kevin Shin",
+      title: "Team 2, El Cochito",
       logo: {
-        alt: "Kevin Shin Logo",
-        src: "img/logo.png",
-        srcDark: "img/logo.png",
+        alt: "El Cochito",
+        src: "img/logo.jpg",
+        srcDark: "img/logo.jpg",
       },
       items: [
-        { to: "/blog", label: "Blog", position: "left" },
-        { to: '/docs/note', label: 'Note', position: 'left',},
         { to: "/projects", label: "Projects", position: "left" },
-        { to: "/talks", label: "Talks", position: "left" },
+        { to: '/docs/note', label: 'Note', position: 'left',},
       ],
     },
     footer: {
@@ -147,37 +136,12 @@ const config: Config = {
           title: "Connect",
           items: [
             {
-              label: "Email me",
-              href: "mailto:d3shin@ucsd.edu",
+              label: "TritonAI",
+              href: "http://triton-ai.eng.ucsd.edu/",
             },
             {
               label: "Github",
-              href: "https://github.com/kevshin2002",
-            },
-            {
-              label: "LinkedIn",
-              href: "https://www.linkedin.com/in/kevin-shin02/",
-            },
-          ],
-        },
-        {
-          title: "Discover",
-          items: [
-            {
-              label: "About me",
-              to: "/",
-            },
-            {
-              label: "Blog",
-              to: "/blog",
-            },
-            {
-              label: "Projects",
-              to: "/projects",
-            },
-            {
-              label: "Talks",
-              to: "/talks",
+              href: "https://github.com/UCSD-ECEMAE-148",
             },
           ],
         },
