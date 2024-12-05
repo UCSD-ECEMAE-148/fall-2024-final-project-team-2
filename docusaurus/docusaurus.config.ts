@@ -80,7 +80,7 @@ const config: Config = {
         blog: {
           postsPerPage: 5,
           showReadingTime: true,
-          editUrl: "https://github.com/kevshin2002/kevshin2002.github.io/tree/main/",
+          editUrl: "https://github.com/UCSD-ECEMAE-148/fall-2024-final-project-team-2/tree/main/",
           feedOptions: {
             type: "all",
             copyright: `Copyright © ${new Date().getFullYear()} Kevin Shin. All rights reserved.`,
