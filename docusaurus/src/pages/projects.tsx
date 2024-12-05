@@ -8,7 +8,7 @@ const projects: ProjectData[] = [
   {
     title: "Human Pose Estimation",
     description: "Human Pose Estimation with OAKD-lite and DepthAI.",
-    url: "https://github.com/liuyuweitarek/Kebbi-Remote-Control-System",
+    url: "/docs/human-pose-estimation",
     image: require(`${assetsDir}/Robot-Remote-Control-System.png`),
   },
   {
