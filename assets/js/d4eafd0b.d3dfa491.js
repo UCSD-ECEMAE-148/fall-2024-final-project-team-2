@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkkevshin2002=self.webpackChunkkevshin2002||[]).push([[6016],{1088:s=>{s.exports=JSON.parse('{"label":"shorts","permalink":"/fall-2024-final-project-team-2/blog/tags/shorts","allTagsPath":"/fall-2024-final-project-team-2/blog/tags","count":1,"unlisted":false}')}}]);
