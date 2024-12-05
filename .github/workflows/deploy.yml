@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -33,7 +33,7 @@ jobs:
           git config --global user.email "actions@github.com"
           git config --global user.name "GitHub Actions Bot"
 
-      - name: Configure Git Remote
+      - name: Set Git Remote URL
         run: |
           cd docusaurus
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/UCSD-ECEMAE-148/fall-2024-final-project-team-2.git
