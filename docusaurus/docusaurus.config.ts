@@ -17,6 +17,7 @@ const config: Config = {
 
   organizationName: 'UCSD-ECEMAE-148',
   projectName: 'fall-2024-final-project-team-2',
+  deploymentBranch: 'gh-pages',
   trailingSlash: false,
 
   i18n: {
