@@ -9,7 +9,7 @@ const projects: ProjectData[] = [
     title: "Human Pose Estimation",
     description: "Human Pose Estimation with OAKD-lite and DepthAI.",
     url: "docs/human-pose",
-    image: require(`${assetsDir}/Robot-Remote-Control-System.png`),
+    image: "https://docs-old.luxonis.com/projects/sdk/en/latest/_images/sdk_human_pose.gif",
   },
   {
     title: "ReMEmbR",
