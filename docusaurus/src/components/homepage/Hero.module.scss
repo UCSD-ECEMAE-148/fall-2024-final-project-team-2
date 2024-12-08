@@ -6,6 +6,9 @@
   position: relative;
   overflow: hidden;
   background: black;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
   color: #fff;
   margin-bottom: 4rem;
   padding-left: 2rem;
@@ -33,7 +36,7 @@
 }
 
 .highlighted {
-  background: linear-gradient(to left, #4bc9ff 0%, #09ffb9 100%);
+  background: linear-gradient(to left, #D4AF37 0%, white 300%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;

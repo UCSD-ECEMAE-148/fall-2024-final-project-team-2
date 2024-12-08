@@ -1,0 +1,129 @@
+---
+id: gps
+title: GPS with PointOneNav and DonkeyCar
+tags:
+  - GPS
+  - PointOneNav
+  - DonkeyCar
+  - Controls
+sidebar_position: 4
+last_update:
+  date: 12/7/2024
+  author: Kevin Shin
+---
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import GPSPhoto from '@site/docs/assets/gps.png';
+
+
+# GPS with PointOneNav and DonkeyCar
+We did an assignment with the Jetson Nano, using GPS and PID tuning to autonomously control the car, given a recorded path. This assignment took by far the longest, taking us two weeks and can be attributed to a few core issues.
+
+The first issue was latency. We first started out with the PointOneNav GNSS, but we saw that there was a 5 second latency when communicating between the basestation and our jetson nano. We then swapped it out for a Ublox, which also gave the same latency error.
+We returned back to PointOneNav and got our PID tuned such that our car was now autonomous.
+
+It was also on this assignment that we realized our shocks were causing our car to tilt heavily towards one side. This caused difficulty in finding our PID solution as the car naturally tilted towards one side.
+
+## GPS Configuration
+Both GNSS uses the DonkeyCar framework, and nothing is different within the configuration of the DonkeyCar framework between them. The only difference is in setting up the boilerplate for communicating with DonkeyCar.
+
+<Tabs>
+  <TabItem value="PointOneNav" label="PointOneNav">
+  On the Jetson Nano, we created a new user to the dialout group which has full access to serial ports. This is necessary as information flows in and out of the serial ports.
+
+  We then installed proprietary software that bridged the PointOneNav hardware to the DonkeyCar framework. Unfortunately, since it is class software, we cannot share it.
+  The following commands can then be ran
+
+  ```bash
+  wget https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-pypy3-Linux-aarch64.sh .
+  bash Mambaforge-pypy3-Linux-aarch64.sh
+  sudo reboot
+
+  mamba create --name py37 -c conda-forge python=3.7 pip
+  mamba activate py37
+  pip3 install -e .    
+  pip install pyserial
+  pip install fusion_engine_client
+  pip install pynmea
+  pip install ntripstreams
+  pip install websockets
+
+  python3 bin/config_tool.py reset factory
+  python3 bin/config_tool.py apply uart2_message_rate nmea gga on
+  python3 bin/config_tool.py save
+
+  python3 bin/runner.py --device-id <polaris_username> --polaris <polaris_password> --device-port /dev/ttyUSB1
+  ```
+
+  Polaris is the basestation we're connecting to.  We set up a script file for the last line which starts a connection with the basestation with the 7 different credentials we were given. This allowed us to run one script file with an argument of which credential to use instead of having to manually enter the credentials.
+
+  :::note
+  The PointOneNav requires this basetation to be running in a terminal. This means we need two terminals for this configuration.
+  :::
+  </TabItem>
+
+  <TabItem value="Ublox" label="Ublox">
+  You don't need anything to run Ublox as DonkeyCar supports Ublox.
+
+  <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+  <img src="https://media1.tenor.com/m/tCL3HGcaV4UAAAAd/raccoon-dance.gif" alt="Raccoon Dancing" />
+  </div>
+
+
+
+  </TabItem>
+</Tabs>
+
+## Running our car
+On another terminal, we sourced our virtual environment and created our GPS donkeycar folder.
+  ```bash
+  donkey createcar --path ./mycar --template path_follow
+  ```
+
+  The configuration file must have these changes in addition to the VESC configurations we set for DonkeyCar Simulator.
+
+  ```py
+  GPS_SERIAL = “/dev/ttyUSB2” # (USB1 if USB0 used above)
+  GPS_SERIAL_BAUDRATE = 460800 
+  # GPS_SERIAL = “/dev/ttyUSB0” # For Ublox
+  # GPS_SERIAL_BAUDRATE = 38400 # For Ublox
+  GPS_DEBUG = True
+  HAVE_GPS = True
+  GPS_NMEA_PATH = None
+  ```
+
+  The configurations below are customizable but are included to showcase the full setup. The settings below are the button mapout for our Logitech F710 controller.
+  ```py
+  SAVE_PATH_BTN = "R1"    	  # button to save path
+  LOAD_PATH_BTN = "X"         # button (re)load path
+  RESET_ORIGIN_BTN = "B" 	    # button to press to move car back to origin
+  ERASE_PATH_BTN = "Y" 	      # button to erase path
+  TOGGLE_RECORDING_BTN = "L1" # button to toggle recording mode
+  INC_PID_D_BTN = None        # button to change PID 'D' constant by PID_D_DELTA
+  DEC_PID_D_BTN = None        # button to change PID 'D' constant by -PID_D_DELTA
+  INC_PID_P_BTN = "None"      # button to change PID 'P' constant by PID_P_DELTA
+  DEC_PID_P_BTN = "None"      # button to change PID 'P' constant by -PID_P_DELTA
+  ```
+
+  We can then run the same command used to run the DonkeyCar simulator.
+  ```bash
+  python manage.py drive
+  ```
+
+  The recorded path will look like follows.
+
+  <img src={GPSPhoto.src} width="960" height="240" alt="GPS Photo"/>
+
+  ## PID Tuning
+  This part took an entire two weeks alongside our hardware troubles. I can now see why people made better control algorithms. We won't give access to our PID tuning since this class will continue even after ours.
+  If PID tuning is proper, you should be able to autonomously drive a path like ours below. We doubled the playback speed to cut time.
+
+  <iframe
+  width="960"
+  height="520"
+  src="https://www.youtube.com/embed/9pHh7QOPzno"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowfullscreen
+  title="GPS Video"
+></iframe>

@@ -1,0 +1,219 @@
+---
+id: lane-tracking
+title: Lane Tracking with ROS2 and OpenCV2
+tags:
+  - ROS2
+  - OpenCV2
+  - Nav2
+  - Docker
+sidebar_position: 5
+last_update:
+  date: 12/7/2024
+  author: Kevin Shin
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+This assignment was perhaps one of the easier ones
+
+## Configuration
+We used a built docker image provided by our class that had all the files and dependencies. The configurations that were necessary was setting up the X11 server for GUI forwarding and giving access to all the jetson's hardware.
+With our provided docker image, we would run this command.
+
+:::note
+Much thanks to [Winston](https://www.linkedin.com/in/winston-wei-han-chou-a02214249/) for providing this.
+:::
+
+```bash
+docker run \
+    --name <Container Name> \
+    -it \
+    --privileged \
+    --net=host \
+    -e DISPLAY=$DISPLAY \
+    -v /dev/bus/usb:/dev/bus/usb \
+    --device /dev/video0 \
+    -v  <your Xauthority file>:/root/.Xauthority:rw \
+    djnighti/ucsd_robocar:devel
+  ```
+
+### Hardware Configuration
+Next, we had to change the car configuration yaml file that told the ROS2 which hardware we were using.
+
+```yaml
+sick: 0
+livox: 0
+bpearl: 0
+rp_lidar: 0
+ld06: 0
+webcam: 0
+intel: 0
+oakd: 1 ## Camera
+zed: 0
+artemis: 0
+ublox: 0
+nmea: 0
+vesc_with_odom: 0
+vesc_without_odom: 1 ## Vesc
+adafruit: 0
+adafruit_servo: 0
+adafruit_continuous_servo: 0
+esp32: 0
+stm32: 0
+bldc_sensor: 0
+bldc_no_sensor: 0
+```
+
+### Software Configuration
+In order for the lane detection to work, we had to tune our filter mask such that it picked up only yellow lines. This was first done using the camera_nav_calibration package. The nodes could be toggled via yaml.
+```yaml
+# 
+# param: 1-on, 0-off
+#
+# sensors/hardware/simulator
+all_components: 1
+simulator: 0
+
+# camera navigation
+camera_nav_calibration: 1
+camera_nav: 0
+
+# recording data 
+rosbag_launch: 0
+
+# TODO: Obstacle Avoidance
+simple_obstacle_detection_launch: 0
+
+# rviz
+sensor_visualization: 0
+
+# control
+manual_joy_control_launch: 0
+f1tenth_vesc_joy_launch: 0
+pid_e_launch: 0
+pid_llh_launch: 0
+pid_servo_launch: 0
+lqr_launch: 0
+lqg_launch: 0
+lqg_w_launch: 0
+mpc_launch: 0
+pid_gps_calibration_launch: 0
+pid_gps_launch: 0
+
+# path planner
+path_nav_launch: 0
+tube_follower_launch: 0
+curve_localizer_launch: 0
+gps_nav_launch: 1
+
+# Basics
+sub_camera_launch: 0
+sub_lidar_launch: 0
+subpub_camera_actuator_launch: 0
+subpub_lidar_actuator_launch: 0
+```
+
+This would allow us to dynamically change our filters
+<div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+  <img src="https://user-content.gitlab-static.net/720fb2d2f68f04cf41fe3b5af37c5a8b2188e641/68747470733a2f2f6a2e676966732e636f6d2f7151374c766b2e676966" alt="Raccoon Dancing" />
+</div>
+
+<div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+  <img src="https://user-content.gitlab-static.net/47e9e7c78fda7beaf699f0f2f5d269695c826e67/68747470733a2f2f6a2e676966732e636f6d2f36575271584e2e676966" alt="Raccoon Dancing" />
+</div>
+
+The only downside was that we had to write down these values and manually change them in another yaml file that was taken as arguments for the navigation and lane tracking nodes. The reason was that the camera navigation didn't overwrite the yaml file and instead was just for calibration.
+
+```yaml
+lane_detection_node: 
+  ros__parameters: 
+    Hue_low : 18 
+    Hue_high : 50 
+    Saturation_low : 75 
+    Saturation_high : 255 
+    Value_low : 145 
+    Value_high : 255 
+    number_of_lines : 100 
+    error_threshold : 0.16 
+    Width_min : 15 
+    Width_max : 112 
+    gray_lower : 61 
+    inverted_filter : 0 
+    kernal_size : 3 
+    erosion_itterations : 1 
+    dilation_itterations : 4 
+    crop_width_decimal  : 0.7 
+    rows_to_watch_decimal  : 0.2 
+    rows_offset_decimal  : 0.5
+    camera_centerline : 0.55 
+calibration_node: 
+  ros__parameters: 
+    Hue_low : 18 
+    Hue_high : 50 
+    Saturation_low : 75 
+    Saturation_high : 255 
+    Value_low : 145 
+    Value_high : 255 
+    number_of_lines : 100 
+    error_threshold : 0.16 
+    Width_min : 15 
+    Width_max : 112 
+    gray_lower : 61 
+    inverted_filter : 0 
+    kernal_size : 3 
+    erosion_itterations : 1 
+    dilation_itterations : 4 
+    crop_width_decimal  : 0.7 
+    rows_to_watch_decimal  : 0.2 
+    rows_offset_decimal  : 0.5
+    camera_centerline : 0.55 
+lane_guidance_node: 
+  ros__parameters: 
+    Kp_steering : 0.8 
+    Ki_steering : 0.0 
+    Kd_steering : 0.0 
+    zero_throttle  : -0.03200000000000003 
+    max_throttle : 0.382 
+    min_throttle : 0.363 
+    error_threshold : 0.16 
+    max_right_steering : 0.792 
+    max_left_steering : -0.831 
+vesc_twist_node: 
+  ros__parameters: 
+    max_potential_rpm : 20000 
+    steering_polarity : 1 
+    throttle_polarity : 1 
+    zero_throttle  : -0.03200000000000003 
+    max_throttle : 0.382
+    min_throttle : 0.363 
+    max_right_steering : 0.792 
+    straight_steering : -0.21999999999999997 
+    max_left_steering : -0.831 
+adafruit_twist_node: 
+  ros__parameters: 
+    steering_polarity : 1 
+    throttle_polarity : 1 
+    zero_throttle  : -0.03200000000000003 
+    max_throttle : 0.382
+    min_throttle : 0.363 
+    max_right_steering : 0.792 
+    straight_steering : -0.21999999999999997 
+    max_left_steering : -0.831 
+```
+
+
+If all was said and done, it would allow our car to automously navigate the lanes with our given filter.
+
+
+The video below is our car autonomously driving given calibrated mask.
+
+  <iframe
+  width="960"
+  height="520"
+  src="https://www.youtube.com/embed/rEJlq3KoeEM"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowfullscreen
+  title="GPS Video"
+></iframe>

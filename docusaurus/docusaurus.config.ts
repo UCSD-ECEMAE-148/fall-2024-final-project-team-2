@@ -73,6 +73,7 @@ const config: Config = {
           docRootComponent: '@theme/DocRoot',
           docItemComponent: '@theme/DocItem',
           remarkPlugins: [require('remark-math')],
+          rehypePlugins: [require('rehype-katex')],
           showLastUpdateAuthor: false,
           showLastUpdateTime: true,
           lastVersion: 'current',
@@ -148,7 +149,9 @@ const config: Config = {
         {
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} Kevin Shin. All rights reserved.`,
+      copyright: `
+        © 2024 - +${new Date().getFullYear()} Kevin Shin, Built with Docusaurus.
+      `,
     },
     themes: [
       require.resolve('@docusaurus/theme-live-codeblock'),

@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap");
+@import 'katex/dist/katex.min.css';
 
 h1,
 h2,
@@ -48,7 +49,7 @@ h5 {
 /* You can override the default Infima variables here. */
 :root {
   --pk-blue: #091533;
-  --pk-green: #76b900;
+  --pk-green: #D4AF37;
 
   --ifm-color-primary: var(--pk-blue);
   --ifm-color-primary-dark: #00162c;

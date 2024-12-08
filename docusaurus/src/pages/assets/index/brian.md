@@ -1,1 +1,1 @@
-Description of brian
+I am a 3rd-year Data Science Major at UC San Diego. My skills are primarily in computer science and software engineering with knowledge of Java, Python, and C++.
