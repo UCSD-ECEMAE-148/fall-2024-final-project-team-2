@@ -129,6 +129,7 @@ const config: Config = {
       items: [
         { to: "/projects", label: "Projects", position: "left" },
         { to: '/docs/details', label: 'Details', position: 'left',},
+        { to: 'thanks', label: 'Special Thanks', position: 'left',},
       ],
     },
     footer: {
