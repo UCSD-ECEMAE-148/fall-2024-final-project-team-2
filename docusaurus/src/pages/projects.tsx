@@ -9,7 +9,7 @@ const projects: ProjectData[] = [
     title: "Human Pose Estimation",
     description: "Human Pose Estimation with OAKD-lite and DepthAI.",
     url: "docs/human-pose",
-    image: "https://docs-old.luxonis.com/projects/sdk/en/latest/_images/sdk_human_pose.gif",
+    image: "https://github.com/geaxgx/depthai_blazepose/blob/main/img/3d_visualizations.gif",
   },
   {
     title: "ReMEmbR",
@@ -19,9 +19,9 @@ const projects: ProjectData[] = [
   },
   {
     title: "Roboflow",
-    description: "Roboflow computer  vision, more description later, incomplete",
+    description: "Roboflow computer  vision with DepthAI",
     url: "docs/roboflow",
-    image: "https://media.tenor.com/DM7SdBiQKhEAAAAM/cat-underwater.gif",
+    image: "https://docs-old.luxonis.com/projects/sdk/en/latest/_images/sdk_human_pose.gif",
   },
   {
     title: "Autonomous Lane Tracking",
