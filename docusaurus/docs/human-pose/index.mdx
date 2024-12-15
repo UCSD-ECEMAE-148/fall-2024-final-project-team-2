@@ -71,7 +71,7 @@ Add the following lines of code under the first break statement:
 if body:
         landmark_coords = body.landmarks_world
 ```
-This will create a list called landmark_coords that constantly display the location all landmarks detected by BlazePose. Each element is another list in the form [x, y, z].
+This will create a list called landmark_coords that constantly display the location all landmarks detected by BlazePose. Each element is a list in the form [x, y, z].
 
 The image below shows all of the landmarks detected by BlazePose. The numbered list corresponds with each landmark's index in `landmark_coords`.
 ![Landmarks](https://raw.githubusercontent.com/geaxgx/depthai_blazepose/main/img/full_body_landmarks.png)
