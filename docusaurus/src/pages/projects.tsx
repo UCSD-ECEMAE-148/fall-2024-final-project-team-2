@@ -9,7 +9,7 @@ const projects: ProjectData[] = [
     title: "Human Pose Estimation",
     description: "Human Pose Estimation with OAKD-lite and DepthAI.",
     url: "docs/human-pose",
-    image: "https://github.com/geaxgx/depthai_blazepose/blob/main/img/3d_visualizations.gif",
+    image: "https://github.com/geaxgx/depthai_blazepose/blob/main/img/3d_visualizations.gif?raw=true",
   },
   {
     title: "ReMEmbR",
