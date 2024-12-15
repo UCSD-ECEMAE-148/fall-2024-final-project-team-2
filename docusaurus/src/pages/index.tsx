@@ -56,7 +56,7 @@ const SylerSocials: SocialLinkData[] = [
 const MarkusSocials: SocialLinkData[] = [
   {
     name: "GitHub",
-    url: "https://github.com/kevshin2002",
+    url: "https://github.com/markus-gokan",
     svg: (
       <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <title>GitHub</title>
@@ -66,7 +66,7 @@ const MarkusSocials: SocialLinkData[] = [
   },
   {
     name: "LinkedIn",
-    url: "https://www.linkedin.com/in/kevin-shin02/",
+    url: "https://www.linkedin.com/in/Markus-Gokan/",
     svg: (
       <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <title>LinkedIn</title>

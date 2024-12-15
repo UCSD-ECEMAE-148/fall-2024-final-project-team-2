@@ -1,1 +1,1 @@
-Description of markus
+I am a 4th year Mechanical Engineering Major at the University of California in San Diego with a Specialization in Robotics and Controls Systems. I'm passionate about renewable energy research and automotive engineering and tend to spend my days off working on restoring my 1986 Chevrolet Corvette project car and work on the suspension design for the Triton Baja SAE team at UCSD. I hope you enjoy reading about our project!
