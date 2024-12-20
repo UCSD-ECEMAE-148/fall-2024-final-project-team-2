@@ -12,12 +12,23 @@ last_update:
   author: Markus Gokan
 ---
 import car1 from './car1.png';
+import car5 from './car5.png';
+import car4 from './car4.png';
+import wiringdiagramt2 from './wiringdiagramt2.png';
+import traxxes from './traxxes.jpg';
+import prototype1 from './prototype1.jpg';
+import prototype2 from './prototype2.jpg';
+import prototype3 from './prototype3.jpg';
+import IMG_5185 from './IMG_5185.jpg';
+import IMG_5195 from './IMG_5195.jpg';
+import CADcanvassideview from './CADcanvassideview.png';
+import CADhomeview from './CADhomeview.png';
 
 # Mechanics and Electronics <img src={car1.src} width="96" height="60" alt="El Cochito"/>
 
 Executing a great final project wasn't just implementing pose estimation, it also meant a neat fit and finish and sleek design that would make our robot stand out.
 
-<img src="car5.png" width="32%"/> <img src="car4.png" width="32%"/> <img src="car1.png" width="32%"/> 
+<img src={car5.src} width="32%"/> <img src={car4.src} width="32%"/> <img src={car1.src} width="32%"/> 
 
 <iframe
   width="960"
@@ -33,7 +44,7 @@ Executing a great final project wasn't just implementing pose estimation, it als
 ## Electronics
 The first step of this was sourcing and wiring all the electronic hardware that would power our bot. Powering our robot is an NVidia jetson Nano and Flipsky FSESC V6, a VESC based speed controller. The mechanical base of our robot was a TRAXXAS Slash 1/10 scale RC truck. For sensors, we utilized an OAK-D camera with RGBD capabilities, an LD06 2D lidar, a Ublox GNSS board, and course we needed some miscellaneous components such as Wifi adapters, Buck converters, and a servo power distribution board. You can see below the wiring diagram of our robot:
 
-<img src="wiringdiagramt2.png" alt="Wiring Diagram"/>
+<img src={wiringdiagramt2.src} alt="Wiring Diagram"/>
 
 Early on we could tell that cable management would be one of the biggest struggles we would face because packaging so many components into a relatively small chassis would usually call for custom wiring, however in most cases we were limited to the wiring harnesses provided to us by the class. To combat this, each iteration of our design incorporated more cable management options such as pass-through points, tie down locations, or purpose-built channels in the robot for specific wires. 
 
@@ -42,7 +53,7 @@ Early on we could tell that cable management would be one of the biggest struggl
 
 Starting with a COTS chassis from TRAXXAS has its benefits, but it needed extensive modification before it would be useful for our purposes. Stripping off the livery and decorative body of an RC truck reveals a barebones chassis like this:
 
- <img src="traxxes.jpg" alt="Stripped TRAXXAS Slash Frame"/>
+ <img src={traxxes.src} alt="Stripped TRAXXAS Slash Frame"/>
 
 Which, luckily, is a great modular base for robots like ours. Using a multi-tiered approach, we were able to package all of our electronics and wiring inside our body, leaving a very clean finish. The body is made with a mix of laser cut 4mm black acrylic and ABS printed on the Prusa Mk.4 Minis available at the UCSD Design and Innovation Building Makerspace. All metric hardware was used, a mix of m2 and m4 bolts, with the only glued component being the decorative spoiler which was acrylic solvent welded. The goal for the design was not only to be extremely compact and look good, but also not hinder the functionality and serviceability of the robot as much as possible. In order to retain quick access to the battery, the side skirts were designed to press fit into place, allowing us to change batteries without needing any tools during our testing. Earlier iterations did, and we quickly found that constantly unbolting components was a headache and overly time consuming. 
 
@@ -60,15 +71,15 @@ Which, luckily, is a great modular base for robots like ours. Using a multi-tier
 
 Prototyping of the electronics plates was done with 3mm MDF, letting us test out modifications to the plates as needed between iterations. Early prototypes of the car can be seen below, the overall form stayed fairly consistent, but the design certainly evolved as we progressed through the weeks towards our final project. 
 
-<img src="prototype3.jpg" width="32%"/> <img src="UCSD-ECEMAE-148/fall-2024-final-project-team-2/car4.png" width="32%"/> <img src="prototype1.jpg" width="32%"/> 
+<img src={prototype3.src} width="32%"/> <img src={prototype2.src} width="32%"/> <img src={prototype1.src} width="32%"/> 
 
 The Jetson Nano is held in a modified case based on a generic model found online, but it was designed to be mounted to maximize airflow and allow the wires to be passed underneath the case directly to the sensors and VESC housed below. By thoroughly enclosing our electronics, we were confidently able to push the limits of our robot in testing, and even when the truck rolled or was driven into brick walls, the electronics stayed safe and sound inside.
 
-<img src="CADcanvassideview.png" width="49%" alt = "CAD Side View with Frame Canvas Overlay"/> <img src="CADhomeview.png" width="49%" alt = "Home View of 3D CAD"/> 
+<img src={CADcanvassideview.src} width="49%" alt = "CAD Side View with Frame Canvas Overlay"/> <img src={CADhomeview.src} width="49%" alt = "Home View of 3D CAD"/> 
 
 However, all this plastic did have a significant impact on the stance of the robot. We noticed that our ground clearance was so low that on tight turns, the bottom of our chassis would scrape the ground. We began to get concerned about bottoming out when driving over obstacles, so we installed new shocks designed for a much larger scale RC truck which gave us nearly 2 inches of clearance without overly affecting our roll center. The before and after is pretty shocking! (Get it??) Unfortunately, these high-strength shocks caused some difficulty with our steering, as the low-power servo motor struggled with full steer due to the resistive force of the shocks. It ended up being a huge problem when we were trying to tune our PID for GNSS navigation, so ee ended up finding shorter shocks that didn't have as much pre-compression, which rectified the problems we experienced. 
 
-<img src="IMG_5185.jpg" width="49%" alt = "Old Shocks"/> <img src="IMG_5195.jpg" width="49%" alt = "New Shocks"/> 
+<img src={IMG_5185.src} width="49%" alt = "Old Shocks"/> <img src={IMG_5195.src} width="49%" alt = "New Shocks"/> 
 
 Obviously, the spoiler was just for fun, but it really turned out great so we decided to keep it on and it ended up being one of our favorite parts of the car, all starting from a jokingly asked, "You know what this thing needs?" after a long workday. 
 
